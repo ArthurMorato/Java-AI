@@ -1,34 +1,83 @@
 === CONTEXTO DO PROJETO ===
+
 [PROJETO]
 Nome: Java-AI
-Descrição: Programa para estudo Java21+ com foco em detalhar e abordar todas os temas de 
-estudos para se tornar um Java Expert. Codigos com comentários explicando sua funcionalidade.
-Stack: Java Core (versão 21) (Se precisar) NoSQL
-Status: Inicio
+Descrição: Projeto de estudo Java 21+ com foco em cobrir todos os temas necessários
+para se tornar um Java Expert. Cada classe é autocontida, comentada e didática.
+Stack: Java Core 21 + NoSQL (MongoDB, somente se necessário)
+Status: Estrutura definida — aguardando geração de código via Cursor
 
+──────────────────────────────────────────
 [DECISÕES ARQUITETURAIS]
-- *Escolha da AI* Porém procure a mais adequada e explique qual foi o critério e qual 
-arquitetura foi esolhida.
+- Arquitetura: Modular Monolith por pacotes temáticos
+  → Critério: didático, cada pacote representa um pilar do conhecimento Java
+- Domínio: Biblioteca/Livros (Book, Author, Library, Member)
+  → Critério: simples, intuitivo e reutilizável em todos os módulos
+- Banco: MongoDB
+  → Critério: NoSQL mais adotado no mercado, boa integração com Java
+- Sempre justificar a escolha quando houver duas ou mais opções tecnológicas
 
+──────────────────────────────────────────
 [ESTRUTURA DE PACOTES]
-src/
-  └──
+src/com.javaai/
+  ├── core/        → oop, collections, generics, exceptions, io
+  ├── modern/      → streams, optional, functional, records, sealed, patterns
+  ├── concurrency/ → threads, executors, concurrent, locks, virtual
+  ├── memory/      → gc, jvm
+  ├── design/      → solid, creational, structural, behavioral
+  └── database/    → nosql
 
+──────────────────────────────────────────
 [ENTIDADES / MODELOS]
-- *Escolha da AI* Porém procure a orientação mais adequada e explique qual foi o critério.
+- Book    (id, title, author, year, genre, price)
+- Author  (id, name, nationality, birthYear)
+- Library (id, name, books)
+- Member  (id, name, email, borrowedBooks)
 
+──────────────────────────────────────────
+[ORDEM DE IMPLEMENTAÇÃO]
+  core → modern → concurrency → memory → design → database
+  → Implementar UM módulo por vez
+  → Antes de iniciar, perguntar qual módulo implementar
+  → Seguir estritamente as regras sem desvios
+
+──────────────────────────────────────────
+[CONVENÇÕES DE CÓDIGO]
+- Cada classe é um programa standalone com método main(), autocontida e executável
+- Classes NÃO precisam se comunicar entre si (sem acoplamento obrigatório)
+- Cada classe exemplifica UM conceito específico com clareza
+- Ao final de cada seção (subpacote), criar classe(s) integradora(s) que
+  combinam TODOS os conceitos da seção em um único programa demonstrativo
+- Comentários detalhados explicando o conceito abordado
+- Bloco de comentário ao final de cada classe exemplificando testes unitários
+  com JUnit 5, mesmo sem arquivo de teste real:
+  // ╔══════════════════════════════════════╗
+  // ║  COMO TESTAR (JUnit 5)               ║
+  // ╚══════════════════════════════════════╝
+  // @Test void deve...() { ... }
+
+──────────────────────────────────────────
+[REGRAS GERAIS]
+- Usar apenas Java 21 + MongoDB (somente se necessário)
+- Foco didático acima de tudo: clareza > elegância
+- Quando houver dúvida sobre qual decisão tomar, perguntar antes de implementar
+- Sempre explicar o critério de escolha quando existir mais de uma opção
+
+──────────────────────────────────────────
 [FUNCIONALIDADES]
-✅ Concluído: Sem código inicial.
-🔄 Em progresso: Pedindo ao Cursor para gerar os códigos seguindo este contexto.
-⏳ Pendente: Criar arquivos e sua estrutura.
+✅ Concluído: Estrutura, arquitetura e convenções definidas
+🔄 Em progresso: Geração de código via Cursor
+⏳ Pendente: Implementação dos módulos (um por vez)
 
+──────────────────────────────────────────
 [ÚLTIMAS ALTERAÇÕES]
-- 
+- Estrutura de pacotes definida
+- Entidades base do domínio Biblioteca definidas
+- Convenções de código e testes estabelecidas
+- Ordem de implementação definida
 
+──────────────────────────────────────────
 [DÚVIDAS / PONTOS EM ABERTO]
-- Procurar melhorias e conselhos para ajudar eu, como programador Java com 33 anos, tentano
-ingressar no mercado de trabalho, formado em C. C.
+- (vazio — preencher conforme surgirem decisões pendentes reais)
 
-[REGRAS DO PROJETO]
-- Use apenas Java e NoSQL caso precise para simular um banco de dados.
 =========================
