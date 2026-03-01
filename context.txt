@@ -1,0 +1,34 @@
+=== CONTEXTO DO PROJETO ===
+[PROJETO]
+Nome: Java-AI
+Descrição: Programa para estudo Java21+ com foco em detalhar e abordar todas os temas de 
+estudos para se tornar um Java Expert. Codigos com comentários explicando sua funcionalidade.
+Stack: Java Core (versão 21) (Se precisar) NoSQL
+Status: Inicio
+
+[DECISÕES ARQUITETURAIS]
+- *Escolha da AI* Porém procure a mais adequada e explique qual foi o critério e qual 
+arquitetura foi esolhida.
+
+[ESTRUTURA DE PACOTES]
+src/
+  └──
+
+[ENTIDADES / MODELOS]
+- *Escolha da AI* Porém procure a orientação mais adequada e explique qual foi o critério.
+
+[FUNCIONALIDADES]
+✅ Concluído: Sem código inicial.
+🔄 Em progresso: Pedindo ao Cursor para gerar os códigos seguindo este contexto.
+⏳ Pendente: Criar arquivos e sua estrutura.
+
+[ÚLTIMAS ALTERAÇÕES]
+- 
+
+[DÚVIDAS / PONTOS EM ABERTO]
+- Procurar melhorias e conselhos para ajudar eu, como programador Java com 33 anos, tentano
+ingressar no mercado de trabalho, formado em C. C.
+
+[REGRAS DO PROJETO]
+- Use apenas Java e NoSQL caso precise para simular um banco de dados.
+=========================
