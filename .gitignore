@@ -5,7 +5,7 @@
 
 # Build / IDE
 target/
-*.class
+
 .idea/
 *.iml
 .vscode/
