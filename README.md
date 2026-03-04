@@ -233,4 +233,4 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 
 **Arthur Morato** — 2026
 
-Se este projeto te ajudou no caminho para se tornar um Java Expert, considere dar uma ⭐ no repositório.
+Se este projeto te ajudou no caminho para se tornar um Java Expert, considere dar uma ⭐ no repositório para insentivo pessoal. Com Deus tudo vai dar certo.
