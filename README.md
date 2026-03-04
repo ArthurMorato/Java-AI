@@ -20,6 +20,7 @@
 - [Ordem de implementação](#-ordem-de-implementação)
 - [Como executar](#-como-executar)
 - [Status e roadmap](#-status-e-roadmap)
+- [Possíveis evoluções futuras](#-possíveis-evoluções-futuras)
 - [Contribuição](#-contribuição)
 - [Licença](#-licença)
 
@@ -48,19 +49,19 @@ Cada classe é pensada para ser **autocontida** (com `main()` executável), **co
 | Tecnologia | Versão | Uso |
 |------------|--------|-----|
 | **Java** | 21+ | Linguagem e runtime |
-| **MongoDB** | 6+ (quando necessário) | Persistência NoSQL |
+| **MongoDB** | 6+ (conceitual, futuro) | Persistência NoSQL |
 
 **Por que Java 21+?**  
 Recursos como *Virtual Threads*, *Pattern Matching*, *Records*, *Sealed Classes* e APIs modernas de concorrência e I/O fazem parte do ecossistema atual e são esperados em projetos profissionais.
 
 **Por que MongoDB?**  
-É o NoSQL mais adotado no mercado, com ótima integração com o ecossistema Java (drivers oficiais, Spring Data, etc.) e adequado para o domínio de documentos (livros, autores, bibliotecas).
+É o NoSQL mais adotado no mercado, com ótima integração com o ecossistema Java (drivers oficiais, Spring Data, etc.) e adequado para o domínio de documentos (livros, autores, bibliotecas).  
+No estado atual do projeto, MongoDB é utilizado apenas de forma **conceitual** (modelagem e repositórios em memória pensados para Mongo). Integração real pode ser adicionada futuramente.
 
-**Requisitos de ambiente:**
+**Requisitos de ambiente (estado atual):**
 
 - JDK 21 ou superior (`java -version`)
-- Maven ou Gradle (conforme configurado no projeto)
-- MongoDB instalado e em execução apenas para o módulo `database`
+- (Opcional) MongoDB 6+ para testes futuros do módulo `database`
 
 ---
 
@@ -87,7 +88,8 @@ src/com/javaai/
 ├── concurrency/    # Threads, Executors, Concurrent API, Locks, Virtual Threads
 ├── memory/         # GC, JVM
 ├── design/         # SOLID, Creational, Structural, Behavioral
-└── database/       # NoSQL (MongoDB)
+├── database/       # NoSQL (MongoDB conceitual, repositórios em memória)
+└── testing/        # JUnit 5, Mockito, padrões de teste, integração de testes
 ```
 
 Cada pacote contém subpacotes ou classes que exemplificam **um conceito por vez**. Ao final de cada seção (subpacote), há classe(s) **integradora(s)** que combinam todos os conceitos daquela seção em um único programa demonstrativo.
@@ -137,9 +139,10 @@ Os módulos devem ser implementados **um por vez**, na seguinte ordem:
 3. **concurrency** — threads, executors, concurrent API, locks, virtual threads
 4. **memory** — GC e JVM
 5. **design** — SOLID e padrões (creational, structural, behavioral)
-6. **database** — NoSQL com MongoDB
+6. **database** — NoSQL com MongoDB (modelagem e repositórios em memória; integração real é futura)
+7. **testing** — JUnit 5, Mockito, padrões de teste e classe integradora de testes
 
-Antes de iniciar um novo módulo, a decisão de *qual* módulo implementar deve ser explícita. Não há desvios em relação a essa ordem e às regras definidas no contexto do projeto.
+No estado atual do repositório, todos os módulos acima já possuem exemplos implementados seguindo as regras do projeto (classes standalone, comentários didáticos e bloco “COMO TESTAR (JUnit 5)”).
 
 ---
 
@@ -152,26 +155,31 @@ Antes de iniciar um novo módulo, a decisão de *qual* módulo implementar deve 
 
 ### Compilação e execução
 
+O projeto é puramente educacional e atualmente não usa Maven/Gradle; você pode compilar e executar qualquer classe standalone diretamente com o `javac`/`java`:
+
 ```bash
 # Clone o repositório
 git clone https://github.com/<seu-usuario>/Java-AI.git
 cd Java-AI
 
-# Compilar (exemplo com Maven)
-mvn clean compile
-
-# Executar uma classe específica (exemplo)
-mvn exec:java -Dexec.mainClass="com.javaai.core.oop.ExemploOOP"
-```
-
-Ou, com o JDK diretamente:
-
-```bash
+# Compilar uma classe específica
 javac --release 21 -d out src/com/javaai/<pacote>/<Classe>.java
+
+# Executar a classe compilada
 java -cp out com.javaai.<pacote>.<Classe>
 ```
 
-Substitua `<pacote>` e `<Classe>` pelo caminho da classe que deseja executar.
+Exemplos:
+
+```bash
+javac --release 21 -d out src/com/javaai/core/TiposPrimitivosEVariais.java
+java -cp out com.javaai.core.TiposPrimitivosEVariais
+
+javac --release 21 -d out src/com/javaai/modern/StreamsFundamentos.java
+java -cp out com.javaai.modern.StreamsFundamentos
+```
+
+Substitua `<pacote>` e `<Classe>` pela classe que deseja estudar em cada módulo.
 
 ---
 
@@ -183,9 +191,20 @@ Substitua `<pacote>` e `<Classe>` pelo caminho da classe que deseja executar.
 | Arquitetura e convenções | Concluído |
 | Entidades do domínio | Definidas |
 | Geração de código (Cursor) | Em progresso |
-| Implementação dos módulos | Pendente (um por vez) |
+| Implementação dos módulos core/modern/concurrency/memory/design/database/testing | Concluído (primeira versão didática) |
 
-**Próximos passos:** implementar o módulo **core** e, em seguida, seguir a ordem definida (modern → concurrency → memory → design → database).
+**Próximos passos imediatos:**
+
+- Refinar exemplos existentes com mais cenários edge case e exercícios propostos em comentário.
+- Adicionar testes reais (JUnit 5 + Mockito) em um diretório de testes dedicado, tomando a seção `testing` como guia.
+
+---
+
+## Possíveis evoluções futuras
+
+- **Console interativo de estudo**: uma pequena aplicação em linha de comando que permita navegar pelos módulos, listar classes disponíveis e executar exemplos diretamente, guiando o estudo como um “curso interativo”.
+- **Integração real com MongoDB**: implementação de repositórios concretos usando o driver oficial do MongoDB ou Spring Data, reaproveitando os modelos e interfaces já definidos no módulo `database`.
+- **Módulo de ferramentas do ecossistema**: nova seção cobrindo tópicos como build (Maven/Gradle), logging, profiling (JFR) e observabilidade, mantendo o foco didático.
 
 ---
 
